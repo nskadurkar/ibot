@@ -1,0 +1,43 @@
+language: en_core_web_md
+pipeline:
+- name: SpacyNLP
+  model: en_core_web_md
+- name: SpacyTokenizer
+- name: SpacyFeaturizer
+- name: RegexFeaturizer
+- name: LexicalSyntacticFeaturizer
+- name: RegexFeaturizer
+  case_sensitive: false
+- name: LexicalSyntacticFeaturizer
+- name: CountVectorsFeaturizer
+- name: CountVectorsFeaturizer
+  analyzer: char_wb
+  min_ngram: 1
+  max_ngram: 4
+- name: DIETClassifier
+  epochs: 100
+  model_confidence: linear_norm
+  loss_type: cross_entropy
+  constrain_similarities: true
+- name: RegexEntityExtractor
+- name: EntitySynonymMapper
+- name: ResponseSelector
+  epochs: 31
+  model_confidence: linear_norm
+  loss_type: cross_entropy
+  constrain_similarities: true
+- name: FallbackClassifier
+  threshold: 0.5
+  ambiguity_threshold: 0.1
+policies:
+- name: AugmentedMemoizationPolicy
+- name: TEDPolicy
+  max_history: 8
+  epochs: 151
+  model_confidence: linear_norm
+  loss_type: cross_entropy
+  constrain_similarities: true
+- name: RulePolicy
+  core_fallback_threshold: 0.3
+  core_fallback_action_name: action_default_fallback
+  enable_fallback_prediction: true

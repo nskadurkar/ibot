@@ -1,0 +1,45 @@
+version: "2.0"
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+- intent: deny
+  examples: |
+    - no
+- intent: affirm
+  examples: |
+    - yes
+    - ya
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+    - /affirm
+- intent: information
+  examples: |
+    - information
+    - my information
+    - my information
+    - employee information
+    - info
+
+- intent: locations
+  examples: |
+    - [4198](location)
+    - [4200](location)
+    - [1773](location)
+    - [3330](location)
+    - [1441](location)
+    - [031](location)
